@@ -1,4 +1,4 @@
-# Contributing to Validator Balance API
+# Contributing to Staking Rewards API
 
 First off, thank you for taking the time to contribute 🎉  
 We welcome improvements, bug fixes, and new validator query SDKs!
@@ -51,8 +51,8 @@ Your commit messages must be in the following format:
 
 1. Clone your fork:
    ```bash
-   git clone https://github.com/<your-username>/validator-balance-api.git
-   cd validator-balance-api
+   git clone https://github.com/<your-username>/staking-rewards-api.git
+   cd staking-rewards-api
    ```
 
 2. Install dependencies:
@@ -129,19 +129,19 @@ Your commit messages must be in the following format:
      }
    };
 
-   const streamValidatorPerformanceETH = async (token, address, options = {}) => {
-     try {
-       const subscription = streamValidatorPerformanceETH(address);
-       return streamRunner(subscription, token, {
-         autoCloseMs: options.autoCloseMs,
-         onData: options.onData,
-         onError: options.onError,
-       });
-     } catch (error) {
-       console.error(error);
-       throw error;
-     }
-   };
+  const runValidatorPerformanceStreamETH = async (token, address, options = {}) => {
+    try {
+      const subscription = streamValidatorPerformanceETH(address);
+      return streamRunner(subscription, token, {
+        autoCloseMs: options.autoCloseMs,
+        onData: options.onData,
+        onError: options.onError,
+      });
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
    ```
 
 5. Export the new functions:
@@ -150,7 +150,7 @@ Your commit messages must be in the following format:
    export {
      // ... existing exports
      getValidatorPerformanceETH,
-     streamValidatorPerformanceETH
+     runValidatorPerformanceStreamETH
    };
    ```
 
@@ -170,9 +170,9 @@ Your commit messages must be in the following format:
 3. Add corresponding functions in `index.js`:
    - `getTopValidators<NETWORK>`
    - `getValidatorRewards<NETWORK>`
-   - `streamValidatorRewards<NETWORK>`
-   - `streamMultipleValidatorRewards<NETWORK>`
-   - `streamAllValidatorRewards<NETWORK>`
+   - `runValidatorRewardsStream<NETWORK>`
+   - `runMultipleValidatorRewardsStream<NETWORK>`
+   - `runAllValidatorRewardsStream<NETWORK>`
 
 4. Update the README with network-specific examples.
 
@@ -184,7 +184,7 @@ Your commit messages must be in the following format:
 * [ ] Code builds without errors.
 * [ ] Tests/examples added if applicable.
 * [ ] Documentation updated (README, comments, or usage).
-* [ ] GraphQL queries tested with [Bitquery IDE](https://ide.bitquery.io/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=contributing).
+* [ ] GraphQL queries tested with [Bitquery IDE](https://ide.bitquery.io/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=contributing).
 
 **Note:** Make sure the commit message starts with either of the `feat:`, `chore:` or `fix:`.
 
@@ -208,7 +208,7 @@ Your commit messages must be in the following format:
 
 Before submitting a PR, make sure to test your GraphQL queries:
 
-1. Visit [Bitquery IDE](https://ide.bitquery.io/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=contributing)
+1. Visit [Bitquery IDE](https://ide.bitquery.io/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=contributing)
 2. Test your query/subscription with real data
 3. Verify the response structure matches your expectations
 4. Test edge cases (empty results, invalid addresses, etc.)

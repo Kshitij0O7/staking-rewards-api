@@ -2,7 +2,7 @@
 
 > A powerful SDK for monitoring validator rewards, earnings, and identifying top-performing validators on Ethereum and BSC networks. Built for staking pools, validator operators, and DeFi platforms that need real-time insights into validator performance.
 
-[![npm version](https://img.shields.io/npm/v/validator-balance-api.svg)](https://www.npmjs.com/package/staking-rewards-api)
+[![npm version](https://img.shields.io/npm/v/staking-rewards-api.svg)](https://www.npmjs.com/package/staking-rewards-api)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🎯 Overview
@@ -16,7 +16,7 @@ The Staking Rewards API provides comprehensive tools for tracking and analyzing 
 - **📈 Historical Analysis**: Analyze validator performance over custom time periods
 - **🔄 Real-time Streaming**: Get live updates via WebSocket subscriptions
 - **🌐 Multi-Validator Support**: Track single validators, multiple validators, or all validators simultaneously
-- **⚡ High Performance**: Built on [Bitquery's API](https://docs.bitquery.io/docs/intro/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards=api) for fast, reliable data access
+- **⚡ High Performance**: Built on [Bitquery's API](https://docs.bitquery.io/docs/intro/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api) for fast, reliable data access
 
 ## 🚀 Quick Start
 
@@ -32,8 +32,8 @@ npm install staking-rewards-api
 import {
     getTopValidatorsETH,
     getValidatorRewardsETH,
-    streamValidatorRewardsETH
-} from 'validator-balance-api';
+    runValidatorRewardsStreamETH
+} from 'staking-rewards-api';
 
 const token = 'YOUR_BITQUERY_TOKEN';
 
@@ -50,7 +50,7 @@ const rewards = await getValidatorRewardsETH(
 console.log('Validator Rewards:', rewards);
 
 // Stream live validator rewards
-const ws = await streamValidatorRewardsETH(token, '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb', {
+const ws = await runValidatorRewardsStreamETH(token, '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb', {
     onData: (data) => {
         console.log('New reward:', data);
     },
@@ -129,20 +129,20 @@ All streaming functions return a WebSocket connection and accept an `options` ob
 - `onError` (function): Callback for errors
 - `autoCloseMs` (number): Automatically close connection after N milliseconds
 
-#### `streamValidatorRewardsETH(token, address, options)`
+#### `runValidatorRewardsStreamETH(token, address, options)`
 
 Stream live validator rewards for a single Ethereum validator.
 
 **Example:**
 ```javascript
-const ws = await streamValidatorRewardsETH(token, '0x...', {
+const ws = await runValidatorRewardsStreamETH(token, '0x...', {
     onData: (data) => console.log('Reward update:', data),
     onError: (err) => console.error('Error:', err),
     autoCloseMs: 60000 // close after 1 minute
 });
 ```
 
-#### `streamMultipleValidatorRewardsETH(token, addresses, options)`
+#### `runMultipleValidatorRewardsStreamETH(token, addresses, options)`
 
 Stream rewards for multiple Ethereum validators simultaneously.
 
@@ -152,27 +152,27 @@ const addresses = [
     '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
     '0x8ba1f109551bD432803012645Hac136c22C92900'
 ];
-const ws = await streamMultipleValidatorRewardsETH(token, addresses, {
+const ws = await runMultipleValidatorRewardsStreamETH(token, addresses, {
     onData: (data) => console.log('Multi-validator update:', data)
 });
 ```
 
-#### `streamAllValidatorRewardsETH(token, options)`
+#### `runAllValidatorRewardsStreamETH(token, options)`
 
 Stream rewards for all Ethereum validators (use with caution - high volume).
 
 **Example:**
 ```javascript
-const ws = await streamAllValidatorRewardsETH(token, {
+const ws = await runAllValidatorRewardsStreamETH(token, {
     onData: (data) => console.log('All validators update:', data)
 });
 ```
 
 #### BSC Streaming Functions
 
-- `streamValidatorRewardsBSC(token, address, options)`
-- `streamMultipleValidatorRewardsBSC(token, addresses, options)`
-- `streamAllValidatorRewardsBSC(token, options)`
+- `runValidatorRewardsStreamBSC(token, address, options)`
+- `runMultipleValidatorRewardsStreamBSC(token, addresses, options)`
+- `runAllValidatorRewardsStreamBSC(token, options)`
 
 Usage is identical to Ethereum functions, but for BSC network.
 
@@ -201,10 +201,10 @@ Usage is identical to Ethereum functions, but for BSC network.
 
 ## 🔑 Getting Your API Token
 
-This SDK uses Bitquery's Transaction Balance API for [Ethereum](https://docs.bitquery.io/docs/blockchain/Ethereum/balances/transaction-balance-tracker/#filter-by-val/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards-api) and [BSC](https://docs.bitquery.io/docs/blockchain/BSC/transaction-balance-tracker/#filter-by-val/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards-api)to fetch blockchain data. To get started:
+This SDK uses Bitquery's Transaction Balance API for [Ethereum](https://docs.bitquery.io/docs/blockchain/Ethereum/balances/transaction-balance-tracker/#filter-by-val/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api) and [BSC](https://docs.bitquery.io/docs/blockchain/BSC/transaction-balance-tracker/#filter-by-val/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api)to fetch blockchain data. To get started:
 
-1. Visit [Bitquery IDE](https://ide.bitquery.io/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards-api) to create an account
-2. Generate your [Access Token](https://account.bitquery.io/user/api_v2/access_tokens/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards-ap) by following [these instructions](https://docs.bitquery.io/docs/authorisation/how-to-generate/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards-ap)
+1. Visit [Bitquery IDE](https://ide.bitquery.io/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api) to create an account
+2. Generate your [Access Token](https://account.bitquery.io/user/api_v2/access_tokens/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api) by following [these instructions](https://docs.bitquery.io/docs/authorisation/how-to-generate/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api)
 3. Start querying validator data immediately
 
 Bitquery provides comprehensive blockchain data APIs for Ethereum, BSC, and 40+ other networks. Perfect for building analytics, monitoring tools, and data-driven applications.
@@ -282,14 +282,14 @@ MIT License - see LICENSE file for details
 
 ## 🔗 Resources
 
-- [Bitquery Documentation](https://docs.bitquery.io/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards-api)
-- [Bitquery IDE](https://ide.bitquery.io/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards-api)
-- [Ethereum Validator Documentation](https://docs.bitquery.io/docs/blockchain/Ethereum/balances/transaction-balance-tracker/eth-validator-balance-tracker/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards-api)
-- [BSC Validator Documentation](https://docs.bitquery.io/docs/blockchain/BSC/transaction-balance-tracker/bsc-validator-balance-tracker/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards-api)
+- [Bitquery Documentation](https://docs.bitquery.io/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api)
+- [Bitquery IDE](https://ide.bitquery.io/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api)
+- [Ethereum Validator Documentation](https://docs.bitquery.io/docs/blockchain/Ethereum/balances/transaction-balance-tracker/eth-validator-balance-tracker/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api)
+- [BSC Validator Documentation](https://docs.bitquery.io/docs/blockchain/BSC/transaction-balance-tracker/bsc-validator-balance-tracker/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api)
 
 ## 💬 Support
 
-- **Bitquery Community**: [Join our Telegram](https://t.me/Bloxy_info/?utm_source=github&utm_medium=validator-balance-api&utm_campaign=staking-rewards-api)
+- **Bitquery Community**: [Join our Telegram](https://t.me/Bloxy_info/?utm_source=github&utm_medium=staking-rewards-api&utm_campaign=staking-rewards-api)
 
 ## 🌟 Why Choose This SDK?
 

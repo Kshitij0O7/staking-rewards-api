@@ -86,14 +86,14 @@ const getValidatorRewardsBSC = async (token, address, hoursAgo = 24) => {
 };
 
 /**
- * streamValidatorRewardsETH
+ * runValidatorRewardsStreamETH
  * Stream live validator rewards data for a single validator on Ethereum
  * @param {string} token - your Bitquery OAuth token
  * @param {string} address - the validator address
  * @param {object} options - optional settings: { autoCloseMs, onData, onError }
  * @returns {Promise<WebSocket>} - active WebSocket connection
  */
-const streamValidatorRewardsETH = async (token, address, options = {}) => {
+const runValidatorRewardsStreamETH = async (token, address, options = {}) => {
     try {
         const subscription = streamValidatorRewardsETH(address);
         return streamRunner(subscription, token, {
@@ -108,14 +108,14 @@ const streamValidatorRewardsETH = async (token, address, options = {}) => {
 };
 
 /**
- * streamMultipleValidatorRewardsETH
+ * runMultipleValidatorRewardsStreamETH
  * Stream live validator rewards data for multiple validators on Ethereum
  * @param {string} token - your Bitquery OAuth token
  * @param {string[]} addresses - array of validator addresses
  * @param {object} options - optional settings: { autoCloseMs, onData, onError }
  * @returns {Promise<WebSocket>} - active WebSocket connection
  */
-const streamMultipleValidatorRewardsETH = async (token, addresses, options = {}) => {
+const runMultipleValidatorRewardsStreamETH = async (token, addresses, options = {}) => {
     try {
         const subscription = streamMultipleValidatorRewardsETH(addresses);
         return streamRunner(subscription, token, {
@@ -130,13 +130,13 @@ const streamMultipleValidatorRewardsETH = async (token, addresses, options = {})
 };
 
 /**
- * streamAllValidatorRewardsETH
+ * runAllValidatorRewardsStreamETH
  * Stream live validator rewards data for all validators on Ethereum
  * @param {string} token - your Bitquery OAuth token
  * @param {object} options - optional settings: { autoCloseMs, onData, onError }
  * @returns {Promise<WebSocket>} - active WebSocket connection
  */
-const streamAllValidatorRewardsETH = async (token, options = {}) => {
+const runAllValidatorRewardsStreamETH = async (token, options = {}) => {
     try {
         const subscription = streamAllValidatorRewardsETH();
         return streamRunner(subscription, token, {
@@ -151,14 +151,14 @@ const streamAllValidatorRewardsETH = async (token, options = {}) => {
 };
 
 /**
- * streamValidatorRewardsBSC
+ * runValidatorRewardsStreamBSC
  * Stream live validator rewards data for a single validator on BSC
  * @param {string} token - your Bitquery OAuth token
  * @param {string} address - the validator address
  * @param {object} options - optional settings: { autoCloseMs, onData, onError }
  * @returns {Promise<WebSocket>} - active WebSocket connection
  */
-const streamValidatorRewardsBSC = async (token, address, options = {}) => {
+const runValidatorRewardsStreamBSC = async (token, address, options = {}) => {
     try {
         const subscription = streamValidatorRewardsBSC(address);
         return streamRunner(subscription, token, {
@@ -173,14 +173,14 @@ const streamValidatorRewardsBSC = async (token, address, options = {}) => {
 };
 
 /**
- * streamMultipleValidatorRewardsBSC
+ * runMultipleValidatorRewardsStreamBSC
  * Stream live validator rewards data for multiple validators on BSC
  * @param {string} token - your Bitquery OAuth token
  * @param {string[]} addresses - array of validator addresses
  * @param {object} options - optional settings: { autoCloseMs, onData, onError }
  * @returns {Promise<WebSocket>} - active WebSocket connection
  */
-const streamMultipleValidatorRewardsBSC = async (token, addresses, options = {}) => {
+const runMultipleValidatorRewardsStreamBSC = async (token, addresses, options = {}) => {
     try {
         const subscription = streamMultipleValidatorRewardsBSC(addresses);
         return streamRunner(subscription, token, {
@@ -195,13 +195,13 @@ const streamMultipleValidatorRewardsBSC = async (token, addresses, options = {})
 };
 
 /**
- * streamAllValidatorRewardsBSC
+ * runAllValidatorRewardsStreamBSC
  * Stream live validator rewards data for all validators on BSC
  * @param {string} token - your Bitquery OAuth token
  * @param {object} options - optional settings: { autoCloseMs, onData, onError }
  * @returns {Promise<WebSocket>} - active WebSocket connection
  */
-const streamAllValidatorRewardsBSC = async (token, options = {}) => {
+const runAllValidatorRewardsStreamBSC = async (token, options = {}) => {
     try {
         const subscription = streamAllValidatorRewardsBSC();
         return streamRunner(subscription, token, {
@@ -220,10 +220,10 @@ export {
     getTopValidatorsBSC,
     getValidatorRewardsETH,
     getValidatorRewardsBSC,
-    streamValidatorRewardsETH,
-    streamMultipleValidatorRewardsETH,
-    streamAllValidatorRewardsETH,
-    streamValidatorRewardsBSC,
-    streamMultipleValidatorRewardsBSC,
-    streamAllValidatorRewardsBSC
+    runValidatorRewardsStreamETH,
+    runMultipleValidatorRewardsStreamETH,
+    runAllValidatorRewardsStreamETH,
+    runValidatorRewardsStreamBSC,
+    runMultipleValidatorRewardsStreamBSC,
+    runAllValidatorRewardsStreamBSC
 };
