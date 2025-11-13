@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main   # trigger when code is merged into main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0   # important: semantic-release needs full git history
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # auto-provided by GitHub
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}   # your npm automation token
+        run: npx semantic-release
