@@ -3,7 +3,7 @@ const streamValidatorRewardsBSC = (address) => {
     subscription {
         EVM(network: bsc) {
             TransactionBalances(
-            where: {TokenBalance: {Address: {is: "${address}"}, BalanceChangeReasonCode: {eq: 211}}}
+            where: {TokenBalance: {Address: {is: "${address}"}, BalanceChangeReasonCode: {eq: 5}}}
             ) {
             Block {
                 Time
@@ -41,7 +41,7 @@ const streamMultipleValidatorRewardsBSC = (addresses) => {
     subscription {
         EVM(network: bsc) {
             TransactionBalances(
-            where: {TokenBalance: {Address: {in: [${addressesString}]}, BalanceChangeReasonCode: {eq: 211}}}
+            where: {TokenBalance: {Address: {in: [${addressesString}]}, BalanceChangeReasonCode: {eq: 5}}}
             ) {
             Block {
                 Time
@@ -78,7 +78,7 @@ const streamAllValidatorRewardsBSC = () => {
     subscription {
         EVM(network: bsc) {
             TransactionBalances(
-            where: {TokenBalance: {BalanceChangeReasonCode: {eq: 211}}}
+            where: {TokenBalance: {BalanceChangeReasonCode: {eq: 5}}}
             ) {
             Block {
                 Time
